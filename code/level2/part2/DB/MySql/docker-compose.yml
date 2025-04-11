@@ -1,0 +1,28 @@
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_db
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+#      - "${MYSQL_DATA_PATH}:/var/lib/mysql"
+       -  data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "${PMA_PORT}:80"
+    depends_on:
+      - mysql
+
+volumes:
+  data:
