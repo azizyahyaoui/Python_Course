@@ -7078,3 +7078,104 @@ Output:
 | **Usage Example**        | `pip install numpy`                      | Running Python code faster than CPython   |
 
 In summary, PyPI is a repository to find and install Python packages, while PyPy is an optimized interpreter designed to execute Python code more efficiently.
+
+## 🧩 **Chapter: Code Quality with Ruff - The All-in-One Linter & Formatter**
+
+Maintaining high code quality is essential for readability, maintainability, and collaboration in software projects. While Python has long relied on tools like `flake8` for linting and `Black` or `autopep8` for formatting, **Ruff** emerges as a modern, unified solution. This chapter explores Ruff—a blazingly fast, all-in-one linter and formatter designed to simplify your code quality workflow.
+
+---
+
+### What is Ruff?
+**Ruff** is an open-source tool written in Rust that combines the capabilities of a linter and formatter into a single package. It aims to replace multiple legacy tools while offering significant performance improvements and a simpler configuration process. Key features include:
+- **Speed**: Ruff is 10–100x faster than traditional Python linters/formatters.
+- **Batteries-included**: Supports over 700 lint rules (PEP 8, PEP 484, flake8, etc.) out of the box.
+- **Unified workflow**: Combines linting, formatting, and auto-fixing in one command.
+- **Modern defaults**: Minimal configuration required to enforce consistent code style.
+
+---
+
+### Getting Started with Ruff
+#### Installation
+Install Ruff via `pip`:
+```bash
+pip install ruff
+```
+
+#### Basic Usage
+1. **Lint your code**:
+   ```bash
+   ruff check .  # Lint all files in the current directory
+   ruff check path/to/file.py  # Lint a specific file
+   ```
+2. **Auto-fix violations**:
+   ```bash
+   ruff check --fix .  # Fix fixable errors automatically
+   ```
+3. **Format code**:
+   ```bash
+   ruff format .  # Format all files (like Black, but faster)
+   ```
+
+---
+
+### Configuration
+Ruff uses `pyproject.toml` for configuration. Example setup:
+```toml
+[tool.ruff]
+# Enable common linting rules
+select = ["E", "F", "W", "UP", "I"]
+ignore = ["E501"]  # Ignore line-length violations
+
+[tool.ruff.format]
+# Formatting options (similar to Black's defaults)
+line-length = 88
+```
+
+Customize rules, exclude files, or integrate with project-specific needs using the [Ruff rule selector](https://beta.ruff.rs/docs/rules/).
+
+---
+
+### Integrations
+#### IDE Support
+- **VS Code**: Install the `Ruff` extension for real-time linting/formatting.
+- **Pre-commit**: Add Ruff to your Git hooks:
+  ```yaml
+  repos:
+    - repo: https://github.com/astral-sh/ruff-pre-commit
+      rev: v0.1.0
+      hooks:
+        - id: ruff
+          args: [--fix]
+  ```
+
+#### CI/CD Pipelines
+Add Ruff to your GitHub Actions workflow:
+```yaml
+- name: Lint with Ruff
+  run: |
+    pip install ruff
+    ruff check .
+```
+
+---
+
+### Why Choose Ruff Over Other Tools?
+1. **Performance**: Ruff’s Rust-based engine processes large codebases in milliseconds.
+2. **Simplicity**: No need to juggle `flake8`, `isort`, `Black`, and `mypy` separately.
+3. **Compatibility**: Works seamlessly with existing tools and configurations.
+4. **Active Development**: Continuously updated with new rules and optimizations.
+
+---
+
+### Best Practices
+1. **Adopt Incrementally**: Start with Ruff’s defaults, then customize rules as needed.
+2. **Enforce in CI**: Block merges if Ruff detects issues.
+3. **Combine with Type Checking**: Use Ruff alongside `mypy` or `pyright` for full static analysis.
+4. **Lint Early**: Run Ruff during development (e.g., in pre-commit hooks) to catch issues fast.
+
+---
+
+### Conclusion
+Ruff redefines code quality workflows by merging linting and formatting into a single, ultrafast tool. Its minimal setup and expansive rule set make it ideal for teams aiming to enforce consistency without sacrificing productivity. By adopting Ruff, you reduce toolchain complexity and focus more on writing clean, maintainable code.
+
+---

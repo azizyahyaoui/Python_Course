@@ -132,3 +132,30 @@
 | `python3 -m module -h` | Help for a specific module |
 
 
+
+### 🧹 Ruff — Fast Python Linter & Formatter
+
+| Command                         | Description                                   |
+| ------------------------------- | --------------------------------------------- |
+| `pip install ruff`              | Install Ruff                                  |
+| `ruff check .`                  | Lint the current directory                    |
+| `ruff check file.py`            | Lint a specific file                          |
+| `ruff check --fix .`            | Lint and auto-fix issues                      |
+| `ruff format .`                 | Format all files like `black`                 |
+| `ruff format file.py`           | Format a specific file                        |
+| `ruff --help`                   | View help and command options                 |
+| `ruff --output-format json`     | Output lint results in JSON format            |
+| `ruff check --select F401`      | Lint only specific rules (e.g. unused import) |
+| `ruff check --ignore E501`      | Ignore specific rules (e.g. line length)      |
+| `ruff check --config ruff.toml` | Use custom config file                        |
+
+---
+
+### ⚡ Ruff with `uv` (super fast virtual env + install)
+
+| Command                          | Description                         |
+| -------------------------------- | ----------------------------------- |
+| `uv venv`                        | Create a virtual environment        |
+| `uv pip install ruff`            | Install Ruff using `uv`             |
+| `uv pip run ruff check .`        | Lint current directory (via uv run) |
+| `uv pip run ruff format file.py` | Format a file with Ruff             |
